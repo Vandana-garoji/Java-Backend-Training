@@ -1,0 +1,61 @@
+
+package com.mypackage;
+import java.util.ArrayList;
+import java.util.Comparator;
+class Mine
+{
+        int value;
+        public Mine(int value)
+        {
+            this.value=value;
+        }
+}
+class MineRank
+{
+        int value;
+        int rank;
+        public MineRank(int value,int rank)
+        {
+            this.value=value;
+            this.rank=rank;
+        }
+}
+class Rank{
+    int rank;
+    public Rank(int rank)
+    {
+        this.rank=rank;
+    }
+}public class Ranking {
+    public static void main(String[] args) {
+        ArrayList<Mine> l=new ArrayList<>();
+        ArrayList<MineRank> lr =new ArrayList<>();
+        ArrayList<Rank> r=new ArrayList<>();
+        l.add(new Mine(10));
+        l.add(new Mine(9));
+        l.add(new Mine(8));
+        l.add(new Mine(66));       
+  int len=l.size();
+        while(!l.isEmpty()) 
+        while(len>0) 
+        {
+            for(Mine i: l) {
+                int rank=1;
+                for(Mine j:l) {
+                    if(i.value>j.value )
+                    {
+                        rank=rank+1;
+                    }
+                //    System.out.println(i.value+" "+j.value+" "+rank);                        
+                }
+                lr.add(new MineRank(i.value,rank));
+                len=len-1;
+        }
+            for(MineRank i:lr) {
+                r.add(new Rank(i.rank));
+            }    
+            for(Rank i:r) {
+                //System.out.println(i.value+" "+i.rank);
+                System.out.print(i.rank +" ");
+            }        }    }
+}
