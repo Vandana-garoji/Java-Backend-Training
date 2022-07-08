@@ -28,7 +28,7 @@ class logic
    
     public int calculateLevel(ArrayList<implementation> i,int capacity)
    {
-       int l=i.size();
+      // int l=i.size();
        int filled=0,level=1;
        while( filled<=capacity)
        {
@@ -42,7 +42,7 @@ class logic
 		      }
 		      
             }
-           filled = filled+l-1;
+          // filled = filled+l-1;
             
            if(filled>=capacity)
                 break;
