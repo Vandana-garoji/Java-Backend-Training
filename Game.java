@@ -12,71 +12,48 @@ import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Game {
-     
-	 public static void writefile(File f )
-     {
-     int n=3;
-     String key;
-     int value;
-     Scanner sc=new Scanner(System.in);
-     HashMap<String, Integer> map = new HashMap<String, Integer>();
+	
+	
+	public static <K,V> void writefile( HashMap<K,V> map )//throws IOException
+	{
+	
+		
+			try
+			{
+			BufferedWriter bf = new BufferedWriter(new FileWriter("C:\\Users\\Vandana\\Desktop\\Gitprac\\Example.txt"));
+			 bf.write("{");
+	        for (Entry<K, V> entry :
+	        	
+	             map.entrySet()) {
+	        	
+	        	 bf.write("{"+entry.getKey() + ":"
+	                      + entry.getValue()+"},");
+	            
+	        }
+	        
+	        bf.write("}");
+			
+	       bf.close();
+			}
+		     catch (IOException e)
+			{
+		         e.printStackTrace();
+		     }
+		    
+		     
 
-     
-     
-     for(int i=0;i<n;i++)
-     {    
-     	System.out.println("Enter Key");
-     	key=sc.next();
-     	
-     	
-     	System.out.println("Enter Value");
-     	value=sc.nextInt();
-     	
-         map.put(key, value);
-     
-     }
-     
-     BufferedWriter bf = null;
-     
-     try {
-
-         
-         bf = new BufferedWriter(new FileWriter(f));
-
-        bf.write("{");
-        bf.newLine();
-         for (Entry<String, Integer> entry : map.entrySet()) {
-
-             
-             bf.write("{"+entry.getKey() + ":"
-                      + entry.getValue()+"}");
-
-             
-             bf.newLine();
-         }
-         bf.write("}");
-
-         bf.flush();
-     }
-     catch (IOException e) {
-         e.printStackTrace();
-     }
-     finally {
-
-         try {
-
-            
-             bf.close();
-         }
-         catch (Exception e) {
-         }
-     }
-     
-     
-     }
+			
+	}
+	
+	
+	
+	
+	
+ 
 
      public static  void  readfile(File f )
      {
+    	
      
      try(BufferedReader br=new BufferedReader(new FileReader(f)))
      {
@@ -85,11 +62,13 @@ public class Game {
      {
      	System.out.println(st);
      }
+     br.close();
      }
      catch(Exception e)
      {
-     	
+     	e.printStackTrace();
      }
+     
      }
      
     
@@ -101,7 +80,33 @@ public class Game {
         // key-value pairs
     	File f = new File("C:\\Users\\Vandana\\Desktop\\Gitprac\\Example.txt");
     	
-    	writefile(f);
+    	
+    	 HashMap<String, Integer> map = new HashMap<String, Integer>();
+    	 
+    	 
+    	 
+    	 Scanner sc=new Scanner(System.in);
+    	 int n=3;
+         String key;
+         int value;
+    	      
+    	      for(int i=0;i<n;i++)
+    	      {    
+    	      	System.out.println("Enter Key");
+    	      	key=sc.next();
+    	      	
+    	      	
+    	      	System.out.println("Enter Value");
+    	      	value=sc.nextInt();
+    	      	
+    	          map.put(key, value);
+    	      
+    	      }
+    	
+    	
+		writefile(map);
+		
+    
     	readfile(f);
   
        
