@@ -1,92 +1,47 @@
-package com.ftd;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
-public class Duplicates {
-	
-	
-	public static void main(String[] args) {
-		ArrayList<Integer> list =new ArrayList<>();
-		ArrayList<Integer> list2 =new ArrayList<>();
-		list.add(1);
-		list.add(1);
-		list.add(1);
-		list.add(2);
-		list.add(2);
-		list.add(2);
-		list.add(3);
-		list.add(3);
-		list.add(3);
-		list.add(3);
-		HashSet<Integer> s =new HashSet<>();
-		Boolean flag=false;
-		int count=0;
-		int temp=list.get(0);
-		System.out.println(temp);
-		s.add(1);
-		
-		do
-		{  
-				
-			flag=true;
-		for(  Integer i :list) 
-		{  
-			
-			
-			
-			
-			if( s.contains(i))
-		    {    flag=false;
-		        
-				 count=count+1;
-				 
-				 temp = i;
-				 System.out.println(temp+" if  "+count);
-				 continue;
-				 
-				 
-				 
-		    }
-			else
-			{  
-				s.add(i);
-			    
-				System.out.println(list2);
-			    System.out.println(temp+" else "+count);
-			    list2.add(temp + count);
-			    count=1;
-			    temp=i;
-			}
-			
-
-		}
-		list2.add(temp + count);
-		
-		s.clear();
-		if(!flag)
-		{
-			list=list2;
-			s.clear();
-			
-		}
-//		else
-//		{
-//			break;
-//		}
-		
-		
-		
-		
-		
-		}while(flag);
-		//System.out.println(list2);
-		System.out.println(list);
-		
-			
-		
-	}
-
+public class Duplicate {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        List<Integer> al=new ArrayList<>();
+        Map<Integer,Integer> map=new HashMap<>();
+        int a;
+        while((a=sc.nextInt())!=-1){
+            al.add(a);
+            if(map.containsKey(a)){
+                map.put(a, map.get(a)+1);
+            }
+            else
+                map.put(a,1);
+        }
+        //Set<Integer> set=new HashSet<>();
+        System.out.println(map);
+        int flag=0;
+        while (flag==0) {
+            al.clear();
+            for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+                if(entry.getValue()==1){
+                    al.add(entry.getKey());
+                    continue;
+                }
+                al.add(entry.getKey()+entry.getValue());
+            }
+            map.clear();
+            for(int i:al){
+                if(map.containsKey(i)){
+                    map.put(i, map.get(i)+1);
+                }
+                else
+                    map.put(i,1);
+            }
+            flag=1;
+            for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+                if(entry.getValue()>1)
+                    flag=0;
+            }
+        }
+        for (int l : al) {
+            System.out.println(l);
+        }
+    }
 }
