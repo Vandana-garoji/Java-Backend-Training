@@ -1,0 +1,4 @@
+com\vandyStore\model\Product.class
+com\vandyStore\repository\ProductRepository.class
+com\vandyStore\controller\ProductController.class
+com\vandyStore\SpringBootCrudViewsApplication.class
